@@ -1,0 +1,35 @@
+# Wake Lock (prevents CPU from sleeping)
+termux-wake-lock
+
+# SSH Server
+if ! pgrep -x "sshd" > /dev/null; then
+    sshd
+    echo "SSH Server started."
+fi
+
+# Nginx
+if ! pgrep -x "nginx" > /dev/null; then
+    nginx
+    echo "Nginx Proxy started."
+fi
+
+# Cloudflare Tunnel
+if ! pgrep -x "cloudflared" > /dev/null; then
+    nohup cloudflared tunnel run redmi-server > /dev/null 2>&1 &
+    echo "Cloudflare Tunnel started."
+fi
+
+# MistServer (via start_mist.sh)
+if ! pgrep -f "MistController" > /dev/null; then
+    ~/start_mist.sh > /dev/null 2>&1 &
+    echo "Mist script started."
+fi
+
+# File Browser (via tmux)
+if ! pgrep -f "filebrowser" > /dev/null; then
+    tmux new-session -d -s fb_session 'proot-distro login ubuntu -- filebrowser -d /root/filebrowser.db -p 9999 -a 0.0.0.0'
+    echo "File Browser started."
+fi
+
+# Short commands (Aliases)
+alias nr='nginx -s reload'

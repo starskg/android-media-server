@@ -1,0 +1,11 @@
+# ADD ALLOWED SITES TO THIS FILE
+# Syntax: domain_name 1;
+# Example:
+kgtv.ru          1;
+kgtv.online      1;
+my-server.local  1;
+
+# --- TO ALLOW ALL SITES ---
+# If you want to allow all sites,
+# uncomment the following line (remove the # symbol):
+# ~.* 1;
