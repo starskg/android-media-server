@@ -404,7 +404,7 @@ The uninstaller will:
 
 MistServer running efficiently on the Redmi Note 10S while handling active streams. Note the incredibly low CPU utilization due to direct transmuxing (no transcoding).
 
-![Server Stats Screenshot](assets/performance-screenshot.png)
+![Server Stats Screenshot](assets/Screenshot.png)
 
 ---
 
