@@ -40,14 +40,7 @@ echo
 echo -e "${BLUE}Stopping services...${NC}"
 pkill -f MistController 2>/dev/null && echo "✓ MistServer stopped"
 nginx -s stop 2>/dev/null && echo "✓ Nginx stopped"
-
-# Handle SSH carefully - don't kill current session if possible
-if [ -n "$SSH_CONNECTION" ] || [ -n "$SSH_CLIENT" ]; then
-    echo -e "${YELLOW}[WARNING] Running via SSH. SSH service will NOT be killed to prevent disconnection.${NC}"
-else
-    pkill sshd 2>/dev/null && echo "✓ SSH stopped"
-fi
-
+pkill sshd 2>/dev/null && echo "✓ SSH stopped"
 tmux kill-session -t fb_session 2>/dev/null && echo "✓ File Browser stopped"
 
 # Release wake lock
