@@ -27,7 +27,7 @@ echo "  • Optionally remove packages"
 echo "  • Restore backups (if available)"
 echo
 
-read -p "Are you sure you want to continue? (y/n): " confirm
+read -p "Are you sure you want to continue? (y/n): " confirm < /dev/tty
 
 if [[ ! "$confirm" =~ ^[Yy](es)?$ ]]; then
     echo "Uninstallation cancelled."
@@ -56,7 +56,7 @@ if [ -n "$backups" ]; then
     echo "Found backups:"
     echo "$backups" | nl
     echo
-    read -p "Restore from backup? (y/n): " restore
+    read -p "Restore from backup? (y/n): " restore < /dev/tty
     
     if [ "$restore" = "y" ]; then
         latest_backup=$(echo "$backups" | tail -1)
@@ -79,7 +79,7 @@ rm -f "$HOME/start_mist.sh" && echo "✓ Removed start_mist.sh"
 rm -f "$PREFIX/etc/nginx/websites" && echo "✓ Removed websites whitelist"
 
 # Ask about .bashrc
-read -p "Remove custom .bashrc? (y/n): " remove_bashrc
+read -p "Remove custom .bashrc? (y/n): " remove_bashrc < /dev/tty
 if [ "$remove_bashrc" = "y" ]; then
     rm -f "$HOME/.bashrc"
     echo "✓ Removed .bashrc"
@@ -91,7 +91,7 @@ echo
 # Ask about packages
 echo -e "${YELLOW}Remove installed packages?${NC}"
 echo "This will remove: nginx, openssh, proot-distro, tmux"
-read -p "Continue? (y/n): " remove_pkgs
+read -p "Continue? (y/n): " remove_pkgs < /dev/tty
 
 if [ "$remove_pkgs" = "y" ]; then
     echo -e "${BLUE}Removing packages...${NC}"
@@ -102,7 +102,7 @@ fi
 echo
 
 # Ask about Ubuntu
-read -p "Remove Ubuntu container (will delete MistServer)? (y/n): " remove_ubuntu
+read -p "Remove Ubuntu container (will delete MistServer)? (y/n): " remove_ubuntu < /dev/tty
 if [ "$remove_ubuntu" = "y" ]; then
     proot-distro remove ubuntu 2>/dev/null
     echo "✓ Ubuntu container removed"
@@ -111,7 +111,7 @@ fi
 echo
 
 # Clean up logs
-read -p "Remove installation logs? (y/n): " remove_logs
+read -p "Remove installation logs? (y/n): " remove_logs < /dev/tty
 if [ "$remove_logs" = "y" ]; then
     rm -f ~/install_*.log ~/quick_install_*.log 2>/dev/null
     echo "✓ Logs removed"
