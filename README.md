@@ -12,6 +12,21 @@ This project demonstrates the engineering capability of repurposing consumer mob
 
 The setup utilizes **Termux** as the host environment for Nginx and SSH, while deploying **MistServer** within an isolated **PRoot Ubuntu** container for maximum stability and performance.
 
+---
+
+## ⚡ Core Engine: MistServer
+
+This streaming gateway is powered by **MistServer**, a high-performance, open-source multimedia server designed for efficiency and flexibility.
+
+**Why MistServer?**
+- 🚀 **Efficiency:** Extremely low resource footprint, ideal for mobile hardware.
+- 🔄 **Transmuxing:** Direct stream re-packaging without heavy CPU transcoding.
+- 📡 **Multi-Protocol:** Native support for RTMP, HLS, SRT, DASH, and more.
+- 🛠️ **Management:** Powerful web-based API and administration panel.
+
+Learn more at [mistserver.org](https://mistserver.org).
+
+---
 ### Key Features
 
 - ✅ **Zero Transcoding Load**: Efficient remuxing results in near 0% CPU usage on the host device
