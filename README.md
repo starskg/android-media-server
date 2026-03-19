@@ -1,6 +1,7 @@
-# Android-Based High-Performance Media Streaming Server
-
 **Transforming a Redmi Note 10S into a Dedicated RTMP to HLS/SRT Gateway**
+
+> [!CAUTION]
+> **THIS IS NOT PRODUCTION SAFE.** This project is primarily for **educational and home-lab purposes**. While capable of handling high loads, it lacks advanced security hardening, enterprise-grade redundancy, and professional monitoring required for mission-critical production environments.
 
 > 🖥️ **Looking for the Ubuntu/Debian version?** → [ubuntu-media-server](https://github.com/starskg/ubuntu-media-server)
 
@@ -11,6 +12,17 @@
 This project demonstrates the engineering capability of repurposing consumer mobile hardware into a robust, 24/7 streaming media server. Using a **Redmi Note 10S** (MediaTek Helio G95, 6GB RAM), we establish a pipeline that ingests RTMP streams (e.g., from OBS Studio) and transmuxes them into HLS or SRT formats for global delivery.
 
 The setup utilizes **Termux** as the host environment for Nginx and SSH, while deploying **MistServer** within an isolated **PRoot Ubuntu** container for maximum stability and performance.
+
+---
+
+## 💡 Real-World Use Cases
+
+Nima uchun bu loyihani ishlatish kerak? Mana bir nechta amaliy misollar:
+
+1.  **IPTV Proxy & Relay:** Tashqi IPTV oqimlarini o'zingizning lokal tarmog'ingizda transmuxing qilib, turli qurilmalarga (Smart TV, Mobile) HLS formatida tarqatish.
+2.  **OBS Gateway:** Kompyuteringizdan (OBS) telefoningizga RTMP stream yuborish va telefoningizni "global gateway" sifatida ishlatib, streamni bir vaqtning o'zida bir nechta CDN'larga yoki veb-pleyerlarga uzatish.
+3.  **Home Media CDN:** Uy sharoitidagi videolarni yoki jonli efirlarni lokal tarmoq ichida (yoki port forwarding orqali tashqarida) past kechikish (low-latency) bilan ko'rish uchun HLS/SRT nuqtasini yaratish.
+4.  **Low-Cost RTMP Ingest:** Qimmatbaho serverlar o'rniga, eski Android telefoningizni 24/7 ishlaydigan RTMP ingest nuqtasiga aylantirish.
 
 ---
 
@@ -52,6 +64,18 @@ The system is layered as follows:
 | **Container** | PRoot Distro (Ubuntu) | Creates an isolated Linux filesystem for the media engine |
 | **Media Engine** | MistServer (ARMv8) | The core server handling ingest (RTMP) and egress (HLS/SRT) |
 | **Optional Services** | File Browser | Web-based file management |
+
+---
+
+## 🔒 Security Best Practices
+
+> [!IMPORTANT]
+> **XAVFSIZLIKNI UNUTMAN G!** Default sozlamalar bilan ochiq internetga chiqish xavfli bo'lishi mumkin.
+
+1.  **Murakkab Parol:** O'rnatish paytida so'raladigan SSH parolini (`Tmux2026` emas) kamida 12 ta harf, raqam va belgilardan iborat qiling.
+2.  **MistServer Admin:** MistServer birinchi marta ishga tushganda, albatta admin panelga kirib (`http://IP:4242`), foydalanuvchi nomi va murakkab parol o'rnating.
+3.  **Whitelist:** Nginx whitelist faylida (`/etc/nginx/streaming-whitelist`) faqat o'zingiz bilgan domenlarni qoldiring. `~.* 1;` (hammaga ruxsat) sozlamasini ishlatmang.
+4.  **Port Management:** Routeringizda faqat kerakli portlarni (`1935`, `8080`) oching. Agar SSH (`8022`) kerak bo'lmasa, uni tashqi tarmoqqa yopib qo'ying.
 
 ---
 
