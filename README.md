@@ -2,6 +2,8 @@
 
 **Transforming a Redmi Note 10S into a Dedicated RTMP to HLS/SRT Gateway**
 
+> 🖥️ **Looking for the Ubuntu/Debian version?** → [ubuntu-media-server](https://github.com/starskg/ubuntu-media-server)
+
 ---
 
 ## 📖 Overview
@@ -669,3 +671,12 @@ This setup is intended for personal/educational use. Ensure compliance with your
 - [ ] Mobile app for server management
 - [ ] Multi-language documentation
 - [ ] Automated backup system
+
+---
+
+## 🔗 Related Projects
+
+| Project | Platform | Description |
+|---------|----------|-------------|
+| **[android-media-server](https://github.com/starskg/android-media-server)** | 🤖 Android (Termux) | This project — Termux/proot based setup |
+| **[ubuntu-media-server](https://github.com/starskg/ubuntu-media-server)** | 🖥️ Ubuntu / Debian | Native systemd-based setup for Linux servers |
