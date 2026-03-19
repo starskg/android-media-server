@@ -17,12 +17,12 @@ The setup utilizes **Termux** as the host environment for Nginx and SSH, while d
 
 ## 💡 Real-World Use Cases
 
-Nima uchun bu loyihani ishlatish kerak? Mana bir nechta amaliy misollar:
+Why should you use this project? Here are some practical examples:
 
-1.  **IPTV Proxy & Relay:** Tashqi IPTV oqimlarini o'zingizning lokal tarmog'ingizda transmuxing qilib, turli qurilmalarga (Smart TV, Mobile) HLS formatida tarqatish.
-2.  **OBS Gateway:** Kompyuteringizdan (OBS) telefoningizga RTMP stream yuborish va telefoningizni "global gateway" sifatida ishlatib, streamni bir vaqtning o'zida bir nechta CDN'larga yoki veb-pleyerlarga uzatish.
-3.  **Home Media CDN:** Uy sharoitidagi videolarni yoki jonli efirlarni lokal tarmoq ichida (yoki port forwarding orqali tashqarida) past kechikish (low-latency) bilan ko'rish uchun HLS/SRT nuqtasini yaratish.
-4.  **Low-Cost RTMP Ingest:** Qimmatbaho serverlar o'rniga, eski Android telefoningizni 24/7 ishlaydigan RTMP ingest nuqtasiga aylantirish.
+1.  **IPTV Proxy & Relay:** Transmux external IPTV streams on your local network and distribute them to various devices (Smart TV, Mobile) in HLS format.
+2.  **OBS Gateway:** Send an RTMP stream from your computer (OBS Studio) to your phone and use your device as a "global gateway" to relay the stream to multiple CDNs or web players simultaneously.
+3.  **Home Media CDN:** Create an HLS/SRT endpoint to view home videos or live broadcasts with low-latency within the local network (or externally via port forwarding).
+4.  **Low-Cost RTMP Ingest:** Turn an old Android phone into a 24/7 dedicated RTMP ingest point instead of using expensive cloud servers.
 
 ---
 
@@ -70,12 +70,12 @@ The system is layered as follows:
 ## 🔒 Security Best Practices
 
 > [!IMPORTANT]
-> **XAVFSIZLIKNI UNUTMAN G!** Default sozlamalar bilan ochiq internetga chiqish xavfli bo'lishi mumkin.
+> **NEVER IGNORE SECURITY!** Exposing your server to the open internet with default settings is high risk.
 
-1.  **Murakkab Parol:** O'rnatish paytida so'raladigan SSH parolini (`Tmux2026` emas) kamida 12 ta harf, raqam va belgilardan iborat qiling.
-2.  **MistServer Admin:** MistServer birinchi marta ishga tushganda, albatta admin panelga kirib (`http://IP:4242`), foydalanuvchi nomi va murakkab parol o'rnating.
-3.  **Whitelist:** Nginx whitelist faylida (`/etc/nginx/streaming-whitelist`) faqat o'zingiz bilgan domenlarni qoldiring. `~.* 1;` (hammaga ruxsat) sozlamasini ishlatmang.
-4.  **Port Management:** Routeringizda faqat kerakli portlarni (`1935`, `8080`) oching. Agar SSH (`8022`) kerak bo'lmasa, uni tashqi tarmoqqa yopib qo'ying.
+1.  **Complex SSH Password:** During installation, set a strong SSH password (avoid defaults like `Tmux2026`). Use at least 12 characters with a mix of letters, numbers, and symbols.
+2.  **MistServer Admin:** Immediately after installation, access the MistServer admin panel (`http://IP:4242`) to set a unique username and a complex password.
+3.  **Whitelist Management:** Keep only trusted domains in your Nginx whitelist (`/etc/nginx/streaming-whitelist`). Avoid using the catch-all `~.* 1;` rule.
+4.  **Minimal Port Exposure:** Only forward necessary ports (`1935`, `8080`) on your router. If external SSH access (`8022`) isn't required, disable its port forwarding rule.
 
 ---
 
