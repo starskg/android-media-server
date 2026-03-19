@@ -115,6 +115,14 @@ EOF
 
 echo "localhost:8888 1;" > "$PREFIX/etc/nginx/websites"
 
+# Install Web UI
+log "Installing Web Proxy Interface..."
+html_dir="$PREFIX/share/nginx/html"
+mkdir -p "$html_dir"
+curl -fsSL https://raw.githubusercontent.com/starskg/android-media-server/main/web/index.html -o "$html_dir/index.html" >> "$LOGFILE" 2>&1
+curl -fsSL https://raw.githubusercontent.com/starskg/android-media-server/main/web/style.css -o "$html_dir/style.css" >> "$LOGFILE" 2>&1
+curl -fsSL https://raw.githubusercontent.com/starskg/android-media-server/main/web/script.js -o "$html_dir/script.js" >> "$LOGFILE" 2>&1
+
 nginx >> "$LOGFILE" 2>&1
 
 # Create startup scripts
